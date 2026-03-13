@@ -53,11 +53,14 @@ AOWSGameMode::AOWSGameMode()
 	//OWSGameModeComponent = CreateDefaultSubobject<UOWSGameModeComponent>(TEXT("OWS Game Mode Component"));
 
 
-	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(this);
-	//GameInstance will be null on Editor startup, but will have a valid refernce when playing the game
-	if (GameInstance)
+	if (!HasAnyFlags(RF_ClassDefaultObject))
 	{
-		InitializeOWSAPISubsystemOnGameMode();
+		UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(this);
+		//GameInstance will be null on Editor startup, but will have a valid refernce when playing the game
+		if (GameInstance)
+		{
+			InitializeOWSAPISubsystemOnGameMode();
+		}
 	}
 }
 

@@ -129,9 +129,9 @@ void AOWSAdvancedProjectile::OnRep_Instigator()
 		//InstigatorTeamNum = GetTeamNum(); // this checks Instigator first
 
 		InstigatorController = GetInstigator()->Controller;
-		if (Cast<AOWSAdvancedProjectile>(GetInstigator()))
+		if (AOWSCharacterWithAbilities* InstigatorChar = Cast<AOWSCharacterWithAbilities>(GetInstigator()))
 		{
-			((AOWSCharacterWithAbilities*)(GetInstigator()))->LastFiredProjectile = this;
+			InstigatorChar->LastFiredProjectile = this;
 		}
 	}
 }

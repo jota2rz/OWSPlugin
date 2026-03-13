@@ -51,11 +51,14 @@ UOWSPlayerControllerComponent::UOWSPlayerControllerComponent()
 		GGameIni
 	);
 
-	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(this);
-	//GameInstance will be null on Editor startup, but will have a valid refernce when playing the game
-	if (GameInstance)
+	if (GetWorld())
 	{
-		InitializeOWSAPISubsystemOnPlayerControllerComponent();
+		UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(this);
+		//GameInstance will be null on Editor startup, but will have a valid refernce when playing the game
+		if (GameInstance)
+		{
+			InitializeOWSAPISubsystemOnPlayerControllerComponent();
+		}
 	}
 }
 
